@@ -6,24 +6,18 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class ProductRepositoryTest {
+import com.study.cafekiosk.IntegrationTestSupport;
+
+@Transactional
+class ProductRepositoryTest extends IntegrationTestSupport {
 
 	@Autowired
 	private ProductRepository productRepository;
-
-	@AfterEach
-	void tearDown() {
-		productRepository.deleteAllInBatch();
-	}
 
 	@DisplayName("원하는 판매 상태를 가진 상품들을 조회한다.")
 	@Test

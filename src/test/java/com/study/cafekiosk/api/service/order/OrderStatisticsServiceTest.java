@@ -3,7 +3,7 @@ package com.study.cafekiosk.api.service.order;
 import static com.study.cafekiosk.domain.order.OrderStatus.*;
 import static com.study.cafekiosk.domain.product.ProductSellingStatus.*;
 import static com.study.cafekiosk.domain.product.ProductType.*;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 import static org.mockito.ArgumentMatchers.*;
 
 import java.time.LocalDate;
@@ -16,11 +16,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
 
-import com.study.cafekiosk.client.mail.MailSendClient;
+import com.study.cafekiosk.IntegrationTestSupport;
 import com.study.cafekiosk.domain.history.mail.MailSendHistory;
 import com.study.cafekiosk.domain.history.mail.MailSendHistoryRepository;
 import com.study.cafekiosk.domain.order.Order;
@@ -30,9 +27,7 @@ import com.study.cafekiosk.domain.product.Product;
 import com.study.cafekiosk.domain.product.ProductRepository;
 import com.study.cafekiosk.domain.product.ProductType;
 
-@ActiveProfiles("test")
-@SpringBootTest
-class OrderStatisticsServiceTest {
+class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
 	@Autowired
 	private OrderStatisticsService orderStatisticsService;
@@ -48,9 +43,6 @@ class OrderStatisticsServiceTest {
 
 	@Autowired
 	private MailSendHistoryRepository mailSendHistoryRepository;
-
-	@MockBean
-	private MailSendClient mailSendClient;
 
 	@AfterEach
 	void tearDown() {

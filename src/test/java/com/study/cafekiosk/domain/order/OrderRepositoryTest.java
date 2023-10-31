@@ -9,34 +9,23 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.study.cafekiosk.domain.orderproduct.OrderProductRepository;
+import com.study.cafekiosk.IntegrationTestSupport;
 import com.study.cafekiosk.domain.product.Product;
 import com.study.cafekiosk.domain.product.ProductRepository;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class OrderRepositoryTest {
+@Transactional
+class OrderRepositoryTest extends IntegrationTestSupport {
 
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
 	private OrderRepository orderRepository;
-	@Autowired
-	private OrderProductRepository orderProductRepository;
 
-	@AfterEach
-	void tearDown() {
-		orderProductRepository.deleteAllInBatch();
-		orderRepository.deleteAllInBatch();
-		productRepository.deleteAllInBatch();
-	}
 
 	@DisplayName("정해진 기간 동안 결제 완료된 주문 목록들을 조회한다.")
 	@Test
