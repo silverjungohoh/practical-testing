@@ -93,7 +93,7 @@ class ProductServiceTest extends IntegrationTestSupport {
 		assertThat(products).hasSize(1)
 			.extracting("productNumber", "type", "sellingStatus", "name", "price")
 			.contains(
-				tuple("001", SELLING, "연유라떼", 5000)
+				tuple("001", HANDMADE,  SELLING, "연유라떼", 5000)
 			);
 	}
 
